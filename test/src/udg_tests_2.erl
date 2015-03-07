@@ -71,6 +71,10 @@
 
 -export([ t/0 ]).
 
+-ifdef(TEST).
+-include_lib("eunit/include/eunit.hrl").
+-endif.
+
 -type tokens() :: [tuple()].
 -type variable_assoc() :: [{atom(), atom()}].
 -type erg_definitions() :: any().
@@ -135,6 +139,11 @@ compare_tokens([], [T02|Terms2], _) ->
 compare_tokens([T0|Terms1], [], _) ->
     {different, {T0,none}, Terms1, []}.
 
+-ifdef(TEST).
+compare_tokens_test_() ->
+    [?_assert(compare_tokens([],[],[]) =:= {same,[]})].
+-endif.
+
 
 -spec compare_arg_assocs/3
     :: (tokens(), tokens(), variable_assoc()) ->
@@ -155,6 +164,11 @@ compare_arg_assocs([T0|Terms1], [T02|Terms2], _) ->
     {different, {T0,T02}, Terms1, Terms2};
 compare_arg_assocs([], [], CompVars) ->
     {same, CompVars}.
+
+-ifdef(TEST).
+compare_arg_assocs_test_() ->
+    [?_assert(compare_arg_assocs([],[],[]) =:= {same, []})].
+-endif.
 
 
 -spec compare_returned_tokens_udg/2

@@ -39,6 +39,10 @@
 
 -type tokens() :: [tuple()].
 
+-ifdef(TEST).
+-include_lib("eunit/include/eunit.hrl").
+-endif.
+
 
 determine_tests_dir() ->
     hd(lists:dropwhile(fun(A) -> element(1,file:read_file_info(A)) /= ok end,
@@ -76,6 +80,11 @@ compare_tokens([Token1|_]=Tokens1, [Token2|_]=Tokens2) when is_tuple(Token1), is
 compare_tokens([], []) ->
     same.
 
+-ifdef(TEST).
+compare_tokens_test_() ->
+    [?_assert(compare_tokens([],[]) =:= same)].
+-endif.
+
 
 -spec compare_tokens_similar/2
     :: (tokens(), tokens()) ->
@@ -102,6 +111,10 @@ compare_tokens_similar([{T0,T1}|Tokens1], [{T02,T12}|Tokens2], _) ->
 compare_tokens_similar([], [], _) ->
     same.
 
+-ifdef(TEST).
+compare_tokens_similar_test_() ->
+    [?_assert(compare_tokens_similar([], []) =:= same)].
+-endif.
 
 -spec test/2 :: (string(), [integer()]) -> boolean().
 test(_,[]) ->
