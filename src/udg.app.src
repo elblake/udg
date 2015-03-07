@@ -1,0 +1,6 @@
+{application, udg,
+  [{vsn, "0.0.1"},
+   {modules,
+     [ udg,
+       udg_erg,
+       udg_erg_includes ]}]}.

@@ -1,0 +1,4 @@
+
+-user_defined_guard(list_and_bin, [ is_ue_list_and_bin/2 ]).
+
+is_ue_list_and_bin(A,B) when is_list(A) andalso is_binary(B).

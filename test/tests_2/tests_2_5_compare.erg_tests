@@ -1,0 +1,95 @@
+
+{expected_definitions,
+	{erg_file, '<erg-file-path>', {udg_definitions, 
+	[
+		{user_defined_guard,tests_2_5,[
+			{pattern_template,tests_2_5,1},{pattern_template,tests_2_5,2},{pattern_template,tests_2_5,3},
+			{pattern_template,tests_2_5b,1},{pattern_template,tests_2_5b,2},{pattern_template,tests_2_5b,3}]},
+		{defs,
+			[
+				{{pattern_template,tests_2_5,1},
+					[{'[',6},{'{',6},{var,6,'A1'},{',',6},{var,6,'A2'},{'}',6},{',',6},{var,6,'A3'},{'|',6},{var,6,'_'},{']',6}],
+					[[{var,6,'A1'}]],
+					{conjunction_list,[{f,is_list,[{var,'A2'}]},{f,is_tuple,[{var,'A3'}]}]}}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_5,2},
+					[{'[',8},{'{',8},{var,8,'A1'},{',',8},{var,8,'A2'},{'}',8},{',',8},{var,8,'A3'},{'|',8},{var,8,'_'},{']',8}],
+					[[{var,8,'A1'}],[{var,8,'A2'}]],
+					{conjunction_list,[{f,is_list,[{var,'A3'}]}]}}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_5,3},
+					[{'[',10},{'{',10},{var,10,'A1'},{',',10},{var,10,'A2'},{'}',10},{',',10},{var,10,'A3'},{'|',10},{var,10,'_'},{']',10}],
+					[[{var,10,'A1'}],[{var,10,'A2'}],[{var,10,'A3'}]],
+					none}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_5b,1},
+					[{'[',12},{'{',12},{var,12,'A1'},{',',12},{var,12,'A2'},{'}',12},{',',12},{var,12,'A3'},{'|',12},{var,12,'_'},{']',12}],
+					[[{var,12,'A1'}]],
+					{conjunction_list,[{f,is_list,[{var,'A2'}]},{f,is_tuple,[{var,'A3'}]}]}}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_5b,2},
+					[{'[',14},{'{',14},{var,14,'A1'},{',',14},{var,14,'A2'},{'}',14},{',',14},{var,14,'A3'},{'|',14},{var,14,'_'},{']',14}],
+					[[{var,14,'A1'}],[{var,14,'A2'}]],
+					{conjunction_list,[{f,is_list,[{var,'A3'}]}]}}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_5b,3},
+					[{'[',16},{'{',16},{var,16,'A1'},{',',16},{var,16,'A2'},{'}',16},{',',16},{var,16,'A3'},{'|',16},{var,16,'_'},{']',16}],
+					[[{var,16,'A1'}],[{var,16,'A2'}],[{var,16,'A3'}]],
+					none}
+			]}
+
+	]}}}.
+
+{1, test_pattern_template, tests_2_5, [[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,B}, C | _ ]"},
+			{tokens_for, "is_list(B), is_tuple(C)"}}
+	]}.
+
+{2, test_pattern_template, tests_2_5, [[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,A}, B | _ ]"},
+			{tokens_for, "is_list(B)"}}
+	]}.
+
+{3, test_pattern_template, tests_2_5, [[{var,1,'A'}],[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,A}, A | _ ]"},
+			{tokens_for, ""}}
+	]}.
+
+
+{4, test_pattern_template, tests_2_5b, [[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,B}, C | _ ]"},
+			{tokens_for, "is_list(B), is_tuple(C)"}}
+	]}.
+
+{5, test_pattern_template, tests_2_5b, [[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,A}, B | _ ]"},
+			{tokens_for, "is_list(B)"}}
+	]}.
+
+{6, test_pattern_template, tests_2_5b, [[{var,1,'A'}],[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,A}, A | _ ]"},
+			{tokens_for, ""}}
+	]}.
+

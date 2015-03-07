@@ -1,0 +1,9 @@
+
+-user_defined_guard(corner_cases_or_example_test, [ is_up_corner_cases_or_example_test/3 ]).
+
+-auto_include_udg([ is_uep_elem_condition/1, is_u_example_test/3, is_u_example_test/3 ]).
+
+is_up_corner_cases_or_example_test([D0|_]=A,B,C) when
+    is_integer(C), is_uep_elem_condition(D0) orelse C > 1000 := is_u_example_test(A,B,C);
+is_up_corner_cases_or_example_test(A,B,C) when
+    true, is_u_example_test(A,B,C).

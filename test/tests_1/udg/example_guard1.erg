@@ -1,0 +1,6 @@
+
+-user_defined_guard(example_guard1, [ is_u_example_guard1/3 ]).
+
+-auto_include_udg([ is_ue_list_and_bin/2 ]).
+
+is_u_example_guard1(A,B,C) when C > 0, is_ue_list_and_bin(A,B).

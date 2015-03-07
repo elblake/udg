@@ -1,0 +1,3 @@
+{application, erlc_udg,
+  [{vsn, "0.0.1"},
+   {modules, [ erlc_udg ]}]}.

@@ -1,0 +1,8 @@
+
+-user_defined_guard(example_test, [ is_u_example_test/3 ]).
+
+-auto_include_udg([ is_u_example_guard1/3, is_u_example_guard2/3 ]).
+
+is_u_example_test(A,B,C) := is_u_example_guard1(A,B,C);
+is_u_example_test(A,B,C) := is_u_example_guard2(C,A,B);
+is_u_example_test(A,B,C) when C =:= 0, true.

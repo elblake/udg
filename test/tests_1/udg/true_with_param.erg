@@ -1,0 +1,4 @@
+
+-user_defined_guard(true_with_param, [ is_u_true_with_param/1 ]).
+
+is_u_true_with_param(A) when true.

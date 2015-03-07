@@ -1,0 +1,4 @@
+
+-user_defined_guard(tests_2_2, [ is_u_tests_2_2/1 ]).
+
+is_u_tests_2_2(A) when true.

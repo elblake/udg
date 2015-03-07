@@ -1,0 +1,10 @@
+
+-user_defined_guard(tests_2_3, [ is_u_tests_2_3/1, is_u_tests_2_3/1, \\tests_2_3/2 ]).
+
+is_u_tests_2_3(A) when true := true;
+is_u_tests_2_3(A) when (false+0), false.
+
+is_u_tests_2_3() when true := true.
+
+([{A,B}|_]) \\ tests_2_3(A,B) when is_list(A), is_list(B).
+

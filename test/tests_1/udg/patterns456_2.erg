@@ -1,0 +1,8 @@
+
+-user_defined_guard(patterns456_2, [ \\pattern4_2/3, \\pattern5_2/6, \\pattern6_2/2 ]).
+
+(#{a := A \\ pattern5_2(C,D,E,F,G,H), b := B \\ pattern5_2(I,J,K,L,M,N)}) \\ pattern4_2(A,E,K) when N /= H, M /= G.
+
+(#{c := A \\ pattern6_2(C,D), d := B \\ pattern6_2(E,F)}) \\ pattern5_2(A,B,C,D,E,F) when A /= atom_5_2, not D =:= atom1_5_2.
+
+(#{e := A, f := B}) \\ pattern6_2(A,B) when A > 300, is_list(B).

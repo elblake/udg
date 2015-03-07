@@ -1,0 +1,216 @@
+
+{expected_definitions,
+	{erg_file, '<erg-file-path>', {udg_definitions, 
+	[
+		{user_defined_guard,tests_2_4,[{udg,is_u_tests_2_4,3},{udg,is_up_tests_2_4,3},{pattern_template,tests_2_4,3}]},
+		{defs,
+			[
+				{{pattern_template,tests_2_4,3},
+					[{'[',4},{'{',4},{var,4,'A1'},{',',4},{var,4,'A2'},{'}',4},{',',4},{var,4,'A3'},{'|',4},{var,4,'_'},{']',4}],
+					[[{var,4,'A1'}],[{var,4,'A2'}],[{var,4,'A3'}]],
+					{conjunction_list,[{f,is_list,[{var,'A1'}]},{f,is_list,[{var,'A2'}]}]}}
+			]},
+		{defs,
+			[
+				{{udg,is_u_tests_2_4,3},none,[[{var,6,'A1'}],[{var,6,'A2'}],[{var,6,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_u_tests_2_4,3},none,[[{var,7,'A1'}],[{var,7,'A2'}],[{var,7,'A3'}]],
+					{conjunction_list,[{atom,false}]}}
+			]},
+		{defs,
+			[
+				{{udg,is_up_tests_2_4,3},none,[[{'[',9},{var,9,'A1'},{'|',9},{var,9,'_'},{']',9}],[{var,9,'A2'}],[{var,9,'A3'}]],
+					{conjunction_list,[{f,is_list,[{var,'A1'}]},{f,is_list,[{var,'A2'}]},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,10,'A1'}],[{'[',10},{var,10,'A2'},{'|',10},{var,10,'_'},{']',10}],[{var,10,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,11,'A1'}],[{var,11,'A2'}],[{'[',11},{var,11,'A3'},{'|',11},{var,11,'_'},{']',11}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{'{',12},{atom,12,tuple},{',',12},{var,12,'A1'},{'}',12}],[{var,12,'A2'}],[{var,12,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,13,'A1'}],[{'{',13},{atom,13,tuple},{',',13},{var,13,'A2'},{'}',13}],[{var,13,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,14,'A1'}],[{var,14,'A2'}],[{'{',14},{atom,14,tuple},{',',14},{var,14,'A3'},{'}',14}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{'#',15},{atom,15,rec},{'{',15},{atom,15,a},{'=',15},{var,15,'A1'},{'}',15}],[{var,15,'A2'}],[{var,15,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,16,'A1'}],[{'#',16},{atom,16,rec},{'{',16},{atom,16,a},{'=',16},{var,16,'A2'},{'}',16}],[{var,16,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,17,'A1'}],[{var,17,'A2'}],[{'#',17},{atom,17,rec},{'{',17},{atom,17,a},{'=',17},{var,17,'A3'},{'}',17}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{'#',18},{'{',18},{atom,18,a},{':=',18},{var,18,'A1'},{'}',18}],[{var,18,'A2'}],[{var,18,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,19,'A1'}],[{'#',19},{'{',19},{atom,19,a},{':=',19},{var,19,'A2'},{'}',19}],[{var,19,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,3},none,[[{var,20,'A1'}],[{var,20,'A2'}],[{'#',20},{'{',20},{atom,20,a},{':=',20},{var,20,'A3'},{'}',20}]],
+					{conjunction_list,[{atom,true},{atom,true}]}}
+			]},
+		{defs,
+			[
+				{{udg,is_up_tests_2_4,2},none,[[{'[',22},{var,22,'A1'},{',',22},{var,22,'A2'},{'|',22},{var,22,'_'},{']',22}],[{var,22,'A3'}]],
+					{conjunction_list,[{f,is_list,[{var,'A1'}]},{f,is_list,[{var,'A2'}]},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{var,23,'A1'}],[{'[',23},{var,23,'A2'},{',',23},{var,23,'A3'},{'|',23},{var,23,'_'},{']',23}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{'{',24},{atom,24,tuple},{',',24},{var,24,'A1'},{',',24},{var,24,'A2'},{'}',24}],[{var,24,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{var,25,'A1'}],[{'{',25},{atom,25,tuple},{',',25},{var,25,'A2'},{',',25},{var,25,'A3'},{'}',25}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{'#',26},{atom,26,rec},{'{',26},{atom,26,a},{'=',26},{var,26,'A1'},{',',26},{atom,26,b},{'=',26},{var,26,'A2'},{'}',26}],[{var,26,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{var,27,'A1'}],[{'#',27},{atom,27,rec},{'{',27},{atom,27,a},{'=',27},{var,27,'A2'},{',',27},{atom,27,b},{'=',27},{var,27,'A3'},{'}',27}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{'#',28},{'{',28},{atom,28,a},{':=',28},{var,28,'A1'},{',',28},{atom,28,b},{':=',28},{var,28,'A2'},{'}',28}],[{var,28,'A3'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,2},none,[[{var,29,'A1'}],[{'#',29},{'{',29},{atom,29,a},{':=',29},{var,29,'A2'},{',',29},{atom,29,b},{':=',29},{var,29,'A3'},{'}',29}]],
+					{conjunction_list,[{atom,true},{atom,true}]}}
+			]},
+		{defs,
+			[
+				{{udg,is_up_tests_2_4,1},none,[[{'[',31},{var,31,'A1'},{',',31},{var,31,'A2'},{',',31},{var,31,'A3'},{'|',31},{var,31,'_'},{']',31}]],
+					{conjunction_list,[{f,is_list,[{var,'A1'}]},{f,is_list,[{var,'A2'}]},{atom,true}]}},
+				{{udg,is_up_tests_2_4,1},none,[[{'{',32},{atom,32,tuple},{',',32},{var,32,'A1'},{',',32},{var,32,'A2'},{',',32},{var,32,'A3'},{'}',32}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,1},none,[[{'#',33},{atom,33,rec},{'{',33},{atom,33,a},{'=',33},{var,33,'A1'},{',',33},{atom,33,b},{'=',33},{var,33,'A2'},{',',33},{atom,33,c},{'=',33},{var,33,'A3'},{'}',33}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_up_tests_2_4,1},none,[[{'#',34},{'{',34},{atom,34,a},{':=',34},{var,34,'A1'},{',',34},{atom,34,b},{':=',34},{var,34,'A2'},{',',34},{atom,34,c},{':=',34},{var,34,'A3'},{'}',34}]],
+					{conjunction_list,[{atom,true},{atom,true}]}}
+			]}
+	]}}}.
+
+
+{1, test_udg, is_u_tests_2_4, [[{var,1,'A'}],[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{guard_disjunction, [{atom,0,true},{',',1},{atom,1,true}], []},
+		{guard_disjunction, [{atom,1,false}],[]}
+	]}.
+{2, test_udg, is_up_tests_2_4, [[{var,1,'A'}],[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{guard_disjunction,
+			{tokens_for, "is_list(TMP__UDG_1), is_list(A), true"},
+			[
+				{'A', {tokens_for, "[TMP__UDG_1|_]"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "[TMP__UDG_2|_]"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "[TMP__UDG_3|_]"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "{tuple,TMP__UDG_4}"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "{tuple,TMP__UDG_5}"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "{tuple,TMP__UDG_6}"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#rec{ a = TMP__UDG_7 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#rec{ a = TMP__UDG_8 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#rec{ a = TMP__UDG_9 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#{ a := TMP__UDG_10 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#{ a := TMP__UDG_11 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#{ a := TMP__UDG_12 }"}}
+			]}
+	]}.
+{3, test_udg, is_up_tests_2_4, [[{var,1,'A'}],[{var,1,'B'}],[{var,1,'C'}]],
+	[ 
+		{guard_disjunction,
+			{tokens_for, "is_list(TMP__UDG_1), is_list(B), true"},
+			[
+				{'A', {tokens_for, "[TMP__UDG_1|_]"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'B', {tokens_for, "[TMP__UDG_2|_]"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'C', {tokens_for, "[TMP__UDG_3|_]"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "{tuple,TMP__UDG_4}"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'B', {tokens_for, "{tuple,TMP__UDG_5}"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'C', {tokens_for, "{tuple,TMP__UDG_6}"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#rec{ a = TMP__UDG_7 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'B', {tokens_for, "#rec{ a = TMP__UDG_8 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'C', {tokens_for, "#rec{ a = TMP__UDG_9 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'A', {tokens_for, "#{ a := TMP__UDG_10 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'B', {tokens_for, "#{ a := TMP__UDG_11 }"}}
+			]},
+		{guard_disjunction,
+			{tokens_for, "true,true"},
+			[
+				{'C', {tokens_for, "#{ a := TMP__UDG_12 }"}}
+			]}
+	]}.
+{4, test_pattern_template, tests_2_4, [[{var,1,'A'}],[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{pattern_disjunction, 
+			{tokens_for, "[ {A,A}, A | _ ]"},
+			{tokens_for, "is_list(A), is_list(A)"}}
+	]}.

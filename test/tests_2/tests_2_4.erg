@@ -1,0 +1,34 @@
+
+-user_defined_guard(tests_2_4, [ is_u_tests_2_4/3, is_up_tests_2_4/3, \\tests_2_4/3 ]).
+
+([{A1,A2},A3|_]) \\ tests_2_4(A1,A2,A3) when is_list(A1), is_list(A2).
+
+is_u_tests_2_4(A1,A2,A3) when true := true;
+is_u_tests_2_4(A1,A2,A3) when false.
+
+is_up_tests_2_4([A1|_],A2,A3) when is_list(A1), is_list(A2) := true;
+is_up_tests_2_4(A1,[A2|_],A3) when true := true;
+is_up_tests_2_4(A1,A2,[A3|_]) when true := true;
+is_up_tests_2_4({tuple,A1},A2,A3) when true := true;
+is_up_tests_2_4(A1,{tuple,A2},A3) when true := true;
+is_up_tests_2_4(A1,A2,{tuple,A3}) when true := true;
+is_up_tests_2_4(#rec{a = A1},A2,A3) when true := true;
+is_up_tests_2_4(A1,#rec{a = A2},A3) when true := true;
+is_up_tests_2_4(A1,A2,#rec{a = A3}) when true := true;
+is_up_tests_2_4(#{a := A1},A2,A3) when true := true;
+is_up_tests_2_4(A1,#{a := A2},A3) when true := true;
+is_up_tests_2_4(A1,A2,#{a := A3}) when true := true.
+
+is_up_tests_2_4([A1,A2|_],A3) when is_list(A1), is_list(A2) := true;
+is_up_tests_2_4(A1,[A2,A3|_]) when true := true;
+is_up_tests_2_4({tuple,A1,A2},A3) when true := true;
+is_up_tests_2_4(A1,{tuple,A2,A3}) when true := true;
+is_up_tests_2_4(#rec{a = A1,b = A2},A3) when true := true;
+is_up_tests_2_4(A1,#rec{a = A2,b = A3}) when true := true;
+is_up_tests_2_4(#{a := A1,b := A2},A3) when true := true;
+is_up_tests_2_4(A1,#{a := A2,b := A3}) when true := true.
+
+is_up_tests_2_4([A1,A2,A3|_]) when is_list(A1), is_list(A2) := true;
+is_up_tests_2_4({tuple,A1,A2,A3}) when true := true;
+is_up_tests_2_4(#rec{a = A1,b = A2,c = A3}) when true := true;
+is_up_tests_2_4(#{a := A1,b := A2, c := A3}) when true := true.

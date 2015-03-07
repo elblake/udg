@@ -1,0 +1,2 @@
+#!/bin/sh
+erl -pa `dirname $0`/../ebin -pa `dirname $0`/ebin -run udg_tests_a run -noshell -run erlang halt -- "$@"

@@ -1,0 +1,7 @@
+{application, udg_tests,
+  [{vsn, "0.0.1"},
+   {modules,
+     [ udg_tests_1,
+       udg_tests_2,
+       udg_tests_a,
+       udg_tests_b ]}]}.

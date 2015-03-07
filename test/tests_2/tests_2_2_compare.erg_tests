@@ -1,0 +1,14 @@
+
+{expected_definitions,
+	{erg_file, '<erg-file-path>', {udg_definitions, 
+	[
+		{user_defined_guard,tests_2_2,[{udg,is_u_tests_2_2,1}]},
+		{defs,
+			[
+				{{udg,is_u_tests_2_2,1},none,[[{var,4,'A'}]],
+					{conjunction_list,[{atom,true}]}}
+			]}
+	]}}}.
+
+{1, test_udg, is_u_tests_2_2, [[{var, 1, 'A'}]],
+	[{guard_disjunction, [{atom,0,true}], []}]}.

@@ -1,0 +1,5 @@
+
+-user_defined_guard(elem_condition, [ is_uep_elem_condition/1 ]).
+
+is_uep_elem_condition({a,D}) := D /= any;
+is_uep_elem_condition({b,[D]}) when D =:= any.

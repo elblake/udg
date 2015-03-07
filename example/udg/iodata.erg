@@ -1,0 +1,10 @@
+
+%% User defined guard for displayable UUIDs.
+%%
+
+-user_defined_guard(iodata, [ is_u_iodata_partial/1 ]).
+
+-auto_include_udg(iolist_partial, [ is_u_iolist_partial/1 ]).
+
+is_u_iodata_partial(IOData) := is_binary(IOData);
+is_u_iodata_partial(IOData) when is_u_iolist_partial(IOData).

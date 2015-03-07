@@ -1,0 +1,42 @@
+
+{expected_definitions,
+	{erg_file, '<erg-file-path>', {udg_definitions, 
+	[
+		{user_defined_guard,tests_2_3,[{udg,is_u_tests_2_3,1},{udg,is_u_tests_2_3,1},{pattern_template,tests_2_3,2}]},
+		{defs,
+			[
+				{{udg,is_u_tests_2_3,1},none,[[{var,4,'A'}]],
+					{conjunction_list,[{atom,true},{atom,true}]}},
+				{{udg,is_u_tests_2_3,1},none,[[{var,5,'A'}]],
+					{conjunction_list,[{parenthesis,{add_ops,[{atom,false},'+',{integer,0}]}},{atom,false}]}}
+			]},
+		{defs,
+			[
+				{{udg,is_u_tests_2_3,0},none,[],
+					{conjunction_list,[{atom,true},{atom,true}]}}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_3,2},
+					[{'[',9},{'{',9},{var,9,'A'},{',',9},{var,9,'B'},{'}',9},{'|',9},{var,9,'_'},{']',9}],
+					[[{var,9,'A'}],[{var,9,'B'}]],
+					{conjunction_list,[{f,is_list,[{var,'A'}]},{f,is_list,[{var,'B'}]}]}}
+			]}
+	]}}}.
+
+{1, test_udg, is_u_tests_2_3, [[{var,1,'A'}]],
+	[
+		{guard_disjunction, {tokens_for, "true,true"}, []},
+		{guard_disjunction, {tokens_for, "(false+0),false"}, []}
+	]}.
+{2, test_udg, is_u_tests_2_3, [[{var,1,'A'}]],
+	[
+		{guard_disjunction, {tokens_for, "true,true"}, []},
+		{guard_disjunction, {tokens_for, "(false+0),false"}, []}
+	]}.
+{3, test_pattern_template, tests_2_3, [[{var,1,'A'}],[{var,1,'A'}]],
+	[
+		{pattern_disjunction,
+			{tokens_for, "[{A,A}|_]"},
+			{tokens_for, "is_list(A), is_list(A)"}}
+	]}.

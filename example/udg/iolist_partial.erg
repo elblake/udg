@@ -1,0 +1,11 @@
+
+%% User defined guard for iolist.
+%%
+
+-user_defined_guard(iolist_partial, [ is_u_iolist_partial/1 ]).
+
+is_u_iolist_partial(IOList) when is_list(IOList), IOList =:= [] := true;
+is_u_iolist_partial(IOList) when is_list(IOList), IOList /= [] :=
+    is_binary(hd(IOList)) orelse
+    is_list(hd(IOList)) orelse
+    is_integer(hd(IOList)).

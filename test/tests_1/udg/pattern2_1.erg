@@ -1,0 +1,5 @@
+
+-user_defined_guard(pattern2_1, [ \\pattern2_1/1 ]).
+
+({tuple, A}) \\ pattern2_1(A) when A /= none.
+

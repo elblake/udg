@@ -1,0 +1,12 @@
+
+-user_defined_guard(pattern1_2, [ \\pattern1_2/2 ]).
+
+-auto_include_udg([ is_up_pattern_condition1_2/2 ]).
+
+(#{ a := A, b := B, condition := Condition }) \\ pattern1_2(A,B)
+    when Condition > 500 := is_up_pattern_condition1_2(A,B);
+(#{ a := A, b := B, condition := Condition }) \\ pattern1_2(A,B)
+    when Condition > 200, Condition < 300 andalso A /= true := is_up_pattern_condition1_2(A,B);
+(#{ a := A, b := B, condition := Condition }) \\ pattern1_2(A,B)
+    when Condition > 100, is_up_pattern_condition1_2(A,B).
+

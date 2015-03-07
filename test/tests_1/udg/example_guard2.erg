@@ -1,0 +1,6 @@
+
+-user_defined_guard(example_guard2, [ is_u_example_guard2/3 ]).
+
+-auto_include_udg([ is_ue_list_and_bin/2 ]).
+
+is_u_example_guard2(Num,G,H) when Num < 0, not is_ue_list_and_bin(G,H) andalso is_tuple(G).

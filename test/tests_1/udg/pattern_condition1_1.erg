@@ -1,0 +1,7 @@
+
+-user_defined_guard(pattern_condition1_1, [ is_up_pattern_condition1_1/2 ]).
+
+-auto_include_udg([ \\pattern2_1/1 ]).
+
+is_up_pattern_condition1_1(A \\ pattern2_1(C),B) when C =:= any.
+

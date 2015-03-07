@@ -1,0 +1,4 @@
+
+-user_defined_guard(true, [ is_u_true/0 ]).
+
+is_u_true() when true.

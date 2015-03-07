@@ -1,0 +1,5 @@
+
+-user_defined_guard(both, [ is_u_both/1 ]).
+
+is_u_both(A) when true;
+is_u_both(A) when false.
