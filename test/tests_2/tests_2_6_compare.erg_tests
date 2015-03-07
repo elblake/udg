@@ -1,0 +1,56 @@
+
+{expected_definitions,
+	{erg_file, '<erg-file-path>', {udg_definitions, 
+	[
+		{user_defined_guard,tests_2_6,[
+			{udg,is_uep_tests_2_6,6},{udg,is_uep_tests_2_6,1},{pattern_template,tests_2_6,5},{pattern_template,tests_2_6,0}]},
+		{defs,
+			[
+				{{pattern_template,tests_2_6,0},
+					[{var,6,'A'},{'\\',6},{'\\',6},{atom,6,tests_2_6},{'(',6},{var,6,'_'},{',',6},{var,6,'_'},{',',6},{var,6,'_'},{',',6},{var,6,'_'},{',',6},{var,6,'_'},{')',6}],
+					[],
+					none}
+			]},
+		{defs,
+			[
+				{{pattern_template,tests_2_6,5},
+					[{'<<',8},{var,8,'A'},{':',8},{integer,8,1},{'/',8},{atom,8,bytes},{',',8},{string,8,[97]},{',',8},{var,8,'B'},{':',8},{integer,8,2},{'/',8},{atom,8,bytes},{',',8},{string,8,[98]},{',',8},{var,8,'C'},{':',8},{integer,8,3},{'/',8},{atom,8,bytes},{',',8},{string,8,[99]},{',',8},{var,8,'D'},{':',8},{integer,8,4},{'/',8},{atom,8,bytes},{',',8},{string,8,[100]},{',',8},{var,8,'E'},{':',8},{integer,8,5},{'/',8},{atom,8,bytes},{'>>',8}],
+					[[{var,9,'A'}],[{var,9,'B'}],[{var,9,'C'}],[{var,9,'D'}],[{var,9,'E'}]],
+					none}
+			]},
+		{defs,
+			[
+				{{udg,is_uep_tests_2_6,1},
+					none,
+					[[{var,11,'A'},{'\\',11},{'\\',11},{atom,11,tests_2_6},{'(',11},{')',11}]],
+					none}
+			]},
+		{defs,
+			[
+				{{udg,is_uep_tests_2_6,6},
+					none,
+					[[{var,13,'A'},{'\\',13},{'\\',13},{atom,13,tests_2_6},{'(',13},{var,13,'B'},{',',13},{var,13,'C'},{',',13},{var,13,'D'},{',',13},{var,13,'E'},{',',13},{var,13,'F'},{')',13}],[{var,13,'B'}],[{var,13,'C'}],[{var,13,'D'}],[{var,13,'E'}],[{var,13,'F'}]],
+					none}
+			]}
+	]}}}.
+
+{1, test_udg, is_uep_tests_2_6, [[{var,1,'A'}]],
+	[
+		{guard_disjunction,
+			[],
+			[{'A', {tokens_for, "UDG_TMP1 \\\\ tests_2_6()"}}]}
+	]}.
+
+{2, test_pattern_template, tests_2_6, [],
+	[
+		{pattern_disjunction,
+			{tokens_for, "UDG_TMP1 \\\\ tests_2_6(_,_,_,_,_)"},
+			[]}
+	]}.
+
+{3, test_pattern_template, tests_2_6, [[{var,1,'_'}],[{var,1,'_'}],[{var,1,'_'}],[{var,1,'_'}],[{var,1,'_'}]],
+	[
+		{pattern_disjunction,
+			{tokens_for, "<<_:1/bytes,\"a\",_:2/bytes,\"b\",_:3/bytes,\"c\",_:4/bytes,\"d\",_:5/bytes>>"},
+			[]}
+	]}.

@@ -513,7 +513,7 @@ expand_user_defined_guards(State, Disjunctions) ->
     {NewState, Disjunctions2} = lists:foldl(fun proc_pattern_disjunctions/2, {State, []}, Disjunctions),
     Disjunctions3 = lists:map(
         fun({FunctionName, BeforeArgs, Arguments, AfterArgs, [], AfterGuards, Body}) ->
-            {FunctionName, BeforeArgs, Arguments, AfterArgs, [], AfterGuards, Body};
+            {FunctionName, BeforeArgs, without_context_nesting_tokens(Arguments), AfterArgs, [], AfterGuards, Body};
            ({FunctionName, BeforeArgs, Arguments, AfterArgs, Guards, AfterGuards, Body}) ->
             {_, NewGuards} = expand_simple_u_guards(State, Guards),
             {FunctionName, BeforeArgs, without_context_nesting_tokens(Arguments), AfterArgs, without_context_nesting_tokens(NewGuards), AfterGuards, Body};
@@ -623,7 +623,7 @@ proc_pattern_guards_pattern_template(State, Arguments) ->
 proc_pattern_guards_pattern_template(State, [{'\\',_},{'\\',_},{atom,_,PattTemplate},{'(',_}|Rest], no_subst, SoFar) ->
     {ok, Args, [{')',_}|Rest2]} = proc_pattern_template_arguments(Rest),
     Arity = length(Args),
-    %% io:format("Pattern template: ~w/~w ~w~n",[PattTemplate, length(Args), Args]),
+    % io:format("Pattern template: ~w/~w ~w~n",[PattTemplate, length(Args), Args]),
     {ok, NewState, Disjunctions, NewInlineContext} = template_pattern_to_subst_list(State, PattTemplate, Arity, Args),
     proc_pattern_guards_pattern_template(NewState, Rest2, {subst, lists:reverse(SoFar), Disjunctions, NewInlineContext}, []);
 proc_pattern_guards_pattern_template(State, [{context_push_state,_,InlineContext,Identifier,ERGFile}=ContextToken|Rest], St, SoFar) -> 
@@ -662,6 +662,8 @@ find_circular_reference_in_erg_nesting(_ERGFile, []) -> false;
 find_circular_reference_in_erg_nesting({FileName,_}=ERGSource, ERGFilesNesting) when is_binary(FileName) ->
     lists:any(fun(A) -> A =:= ERGSource end, ERGFilesNesting).
 
+proc_pattern_template_arguments([{')', _}=T | Rest]) ->
+    {ok, [], [T|Rest]};
 proc_pattern_template_arguments(Tokens) ->
     proc_pattern_template_arguments(Tokens,[],[],[]).
 proc_pattern_template_arguments([{',', _} | Rest], SoFar, [], Args) ->
@@ -726,6 +728,7 @@ proc_udg_function_in_boolean_expression_left([_T|_Tokens], 1, []) -> false.
 proc_udg_function_in_boolean_expression_right(Tokens) ->
     proc_udg_function_in_boolean_expression_right(Tokens, 1, []).
 proc_udg_function_in_boolean_expression_right([{T,_}|_], _, []) when T =:= ','; T =:= ';'; T =:= '->' -> true;
+proc_udg_function_in_boolean_expression_right([], 2, []) -> true;
 proc_udg_function_in_boolean_expression_right([{'orelse',_}|Tokens], _, []) ->
     proc_udg_function_in_boolean_expression_right(Tokens, 2, []);
 proc_udg_function_in_boolean_expression_right([{'andalso',_}|Tokens], _, []) ->
@@ -761,13 +764,17 @@ proc_pattern_guards_is_up_udg_function_have_function(UDGKind, PerhapsGuardFun, S
                                 true -> NewGuardsAndArgAssocs;
                                 false -> lists:map(
                                     fun({guard_disjunction,NewGuards,ArgAssocs}) ->
-                                        {guard_disjunction, [{'(',Line}|NewGuards] ++ [{')',Line}], ArgAssocs}
+                                        {guard_disjunction, [{'(',Line}|
+                                            true_token_if_empty_tokens_list(Line,NewGuards)] ++
+                                            [{')',Line}], ArgAssocs}
                                     end, NewGuardsAndArgAssocs) ++
                                     [{guard_disjunction,[{atom,Line,false}],[]}]
                             end,
                             lists:reverse(SoFar), NewInlineContext}, LeftDisj, [])
             end
     end.
+true_token_if_empty_tokens_list(LnNum, []) -> [{atom,LnNum,true}];
+true_token_if_empty_tokens_list(_, Tokens) -> Tokens.
 
 proc_pattern_guards_is_up_udg_function(State, GuardTokens) when is_list(GuardTokens) ->
     proc_pattern_guards_is_up_udg_function(State, GuardTokens, no_subst, [], []);

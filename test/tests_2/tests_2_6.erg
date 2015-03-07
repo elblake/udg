@@ -1,0 +1,13 @@
+
+-user_defined_guard(tests_2_6, [
+    is_uep_tests_2_6/6, is_uep_tests_2_6/1,
+    \\tests_2_6/5, \\tests_2_6/0 ]).
+
+(A \\ tests_2_6(_,_,_,_,_)) \\ tests_2_6().
+
+(<<A:1/bytes,"a",B:2/bytes,"b",C:3/bytes,"c",D:4/bytes,"d",E:5/bytes>>)
+   \\ tests_2_6(A, B, C, D, E).
+
+is_uep_tests_2_6(A \\ tests_2_6()).
+
+is_uep_tests_2_6(A \\ tests_2_6(B,C,D,E,F),B,C,D,E,F).

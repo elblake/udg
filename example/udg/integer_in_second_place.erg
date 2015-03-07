@@ -1,0 +1,11 @@
+
+%% Pattern template for getting the integer in the second
+%% place of a list or small tuple.
+%%
+
+-user_defined_guard(integer_in_second_place, [
+    \\integer_in_second_place/1 ]).
+
+([_,Value|_]) \\ integer_in_second_place(Value) := is_integer(Value);
+({_,Value}) \\ integer_in_second_place(Value) := is_integer(Value);
+({_,Value,_}) \\ integer_in_second_place(Value) when is_integer(Value).

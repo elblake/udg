@@ -1,0 +1,21 @@
+
+%% Pattern template for a non-empty message.
+%%
+
+-user_defined_guard(for_tests_1_11, [
+    \\test_pattern/3,
+    is_uep_test_var/6, is_uep_test_var/1,
+    \\test_var/5, \\test_var/0 ]).
+
+(#message{ a = A, b = B, c = C })
+    \\ test_pattern(C, A, B) when is_binary(B), byte_size(B) =/= 0.
+
+(A \\ test_var(_,_,_,_,_)) \\ test_var().
+
+(<<A:1/bytes,"-",B:2/bytes,"-",C:3/bytes,"-",D:4/bytes,"-",E:5/bytes>>)
+    \\ test_var(A,B,C,D,E).
+
+is_uep_test_var(UUID \\ test_var()).
+
+is_uep_test_var(A \\ test_var(B,C,D,E,F),B,C,D,E,F).
+
