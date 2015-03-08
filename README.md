@@ -549,7 +549,7 @@ Pattern templates, `is_up_*/*` and `is_uep_*/*` are very similar in that they au
     example(UUID \\ uuid(Part1,Part2,Part3,Part4,Part5)) ->
         io:format("~w", [Part5]).
 
-An `\\` operator was opted for because the feature of hiding variables makes the pattern template a many-to-one relation as opposed to a one-to-one relation offered by a pattern match and all its variable bindings.
+The `\\` pseudo-operator signifies a pattern template substitution and an `=` operator followed by the pattern being substituted in will usually appear where the `\\` pseudo-operator used to be.
 
 An example of pattern augmentation by `is_up_*/*`.
 

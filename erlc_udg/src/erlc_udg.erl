@@ -65,7 +65,7 @@ file(InputFile) ->
                         {ok, _ModuleName} ->
                             {ok, CWD} = file:get_cwd(),
                             ProcessedERL = filename:join([CWD, filename:basename(filename:rootname(
-                                InputFilePath, ".erl")) ++ ".processed_erl"]),
+                                InputFilePath, ".erl")) ++ ".udg_processed_erl"]),
                             file:delete(ProcessedERL),
                             {ok,_} = file:copy(TempSourceFile, ProcessedERL),
                             case file:copy(
