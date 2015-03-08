@@ -524,7 +524,7 @@ The four guard function-like constructs are the result of divisions where there 
 
 * `is_u_*/*` and `is_ue_*/*` functions can be used in "`if`" expression guard sequences (`is_up_*/*` and `is_uep_*/*` functions can't be used in these).
 * `is_up_*/*` and `is_uep_*/*` can match to patterns in their definitions, unlike a pattern template these functions can test relations between arbitrarily given arguments in the guarded parent function.
-* `is_ue_*/*` and `is_uep_*/*` can be nested within a boolean expression using orelse/andalso.
+* `is_ue_*/*` and `is_uep_*/*` can be nested within a boolean expression using `orelse`/`andalso`.
 * `is_u_*/*` and `is_up_*/*` can have comma separated conjunction sequences.
 
 The pattern template construct is closely related in mechanism but is used as a composable reusable pattern mnemonic to provide variables to the function body.
@@ -612,7 +612,7 @@ The tail expression contains the same as any other expression in between top lev
 Notes on disjunctions in user-defined guards
 ============================================
 
-Care should be taken when using the disjunction ability and try using orelse expressions after enough conjunctive guards are provided to ensure unintended exception effects, due to possibility of up to 2^n terms from exponential effects of the converting to disjunctive normal form.
+Care should be taken when using the disjunction ability and try using `orelse` expressions after enough conjunctive guards are provided to ensure unintended exception effects, due to possibility of up to 2^n terms from exponential effects of the Cartesian-product type of duplication of alternatives to maintain disjunctive normal form.
 
     ab, cd -> a,cd;
               b,cd -> a,c;
@@ -620,7 +620,7 @@ Care should be taken when using the disjunction ability and try using orelse exp
                       b,c;
                       b,d.
 
-`is_uep_*/*` can be found in nested expressions involving orelse if the disjunction is duplicated to itself and false:
+`is_uep_*/*` can be found in nested logical expressions involving `orelse` and `andalso`, in this case the alternatives are at least the disjunction of alternatives by the "is_uep_" guard and `false`:
 
     examp(A) when is_up_test(A) orelse true -> ....
 
