@@ -1035,12 +1035,12 @@ expr_in_bits_typelist(Tokens) ->
     expr_in_bits_typelist(Tokens,[]).
 expr_in_bits_typelist([{'atom',_,'unit'}=T1,{':',_}=T2,{'integer',_,_}=T3|Rest], TL) ->
     case Rest of
-        [{'-',_}|Rest2] -> expr_in_bits_typelist(Rest2, [T3,T2,T1|TL]);
+        [{'-',_}=T4|Rest2] -> expr_in_bits_typelist(Rest2, [T4,T3,T2,T1|TL]);
         _ -> {ok, lists:reverse([T3,T2,T1|TL]), Rest}
     end;
 expr_in_bits_typelist([{'atom',_,_}=T|Rest], TL) ->
     case Rest of
-        [{'-',_}|Rest2] -> expr_in_bits_typelist(Rest2, [T|TL]);
+        [{'-',_}=T2|Rest2] -> expr_in_bits_typelist(Rest2, [T2,T|TL]);
         _ -> {ok, lists:reverse([T|TL]), Rest}
     end.
 
@@ -1142,7 +1142,8 @@ to_tokens(LineNum, {f, Fun, Args}) ->
         combine_list_to_tokens_with_token(LineNum,Args,',') ++ [{')',LineNum}];
 to_tokens(LineNum, {'var',Var}) -> [{var, LineNum, Var}];
 to_tokens(LineNum, {'integer',Num}) -> [{'integer', LineNum, Num}];
-to_tokens(LineNum, {bitexpr, BExpr}) -> todo;
+to_tokens(LineNum, {bitexpr, BExprs}) ->
+    [{'<<',LineNum}] ++ to_tokens_bits(LineNum, BExprs) ++ [{'>>',LineNum}];
 to_tokens(LineNum, {parenthesis, Inside}) ->
     [{'(',LineNum}] ++ to_tokens(LineNum, Inside) ++ [{')',LineNum}];
 to_tokens(LineNum, {list, ExprList, none}) ->
@@ -1154,6 +1155,33 @@ to_tokens(LineNum, {list, ExprList, TailExpr}) ->
 to_tokens(LineNum, {tuple, ExprList}) ->
     [{'{',LineNum}] ++ 
     combine_list_to_tokens_with_token(LineNum,ExprList,',') ++ [{'}',LineNum}].
+
+to_tokens_bits(LineNum, BExprs) -> to_tokens_bits(LineNum, BExprs, []).
+to_tokens_bits(LineNum, [], SoFar) -> lists:append(lists:reverse(SoFar));
+to_tokens_bits(LineNum, [{bitexpr, BExprs, Size, TL}|Rest], SoFar) ->
+    to_tokens_bits_next(LineNum, Rest, [lists:append(
+        [[{'<<',LineNum}|to_tokens_bits(LineNum, BExprs)],
+            [{'>>',LineNum}], to_tokens_bits_size_tl(LineNum, Size, TL)])|SoFar]);
+to_tokens_bits(LineNum, [{integer, N, Size, TL}|Rest], SoFar) ->
+    to_tokens_bits_next(LineNum, Rest,
+        [[{'integer',LineNum,N}] ++ to_tokens_bits_size_tl(LineNum, Size, TL)|SoFar]);
+to_tokens_bits(LineNum, [{string, S, Size, TL}|Rest], SoFar) ->
+    to_tokens_bits_next(LineNum, Rest,
+        [[{'string',LineNum,S}] ++ to_tokens_bits_size_tl(LineNum, Size, TL)|SoFar]);
+to_tokens_bits(LineNum, [{bitvar, Var, Size, TL}|Rest], SoFar) ->
+    to_tokens_bits_next(LineNum, Rest,
+        [[{'var',LineNum,Var}] ++ to_tokens_bits_size_tl(LineNum, Size, TL)|SoFar]).
+to_tokens_bits_next(LineNum, [], SoFar) -> to_tokens_bits(LineNum, [], SoFar);
+to_tokens_bits_next(LineNum, Next, SoFar) -> to_tokens_bits(LineNum, Next, [[{',',LineNum}]|SoFar]).
+
+
+to_tokens_bits_size_tl(_, none, none) -> [];
+to_tokens_bits_size_tl(LineNum, Size, none) when is_integer(Size) ->
+    [{':',LineNum},{'integer',LineNum,Size}];
+to_tokens_bits_size_tl(LineNum, none, TL) when is_list(TL) ->
+    [{'/',LineNum}|TL];
+to_tokens_bits_size_tl(LineNum, Size, TL) when is_list(TL), is_integer(Size) ->
+    [{':',LineNum},{'integer',LineNum,Size},{'/',LineNum}|TL].
 
 combine_list_to_tokens_with_token(LineNum,ExprList,Op) ->
     combine_list_to_tokens_with_token(LineNum,ExprList,Op,[]).

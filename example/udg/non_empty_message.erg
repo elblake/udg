@@ -6,4 +6,5 @@
     \\non_empty_message/3 ]).
 
 (#message{ flags = MsgFlags, data = MsgLine, uuid = UUID })
-    \\ non_empty_message(UUID, MsgFlags, MsgLine) when is_binary(MsgLine), byte_size(MsgLine) =/= 0.
+    \\ non_empty_message(UUID, MsgFlags, MsgLine)
+        when is_binary(MsgLine), MsgLine =/= <<>>.
